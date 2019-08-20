@@ -121,8 +121,8 @@ angular.module('mainApp')
         $scope.currentAccount = accountMgmt.getCurrentStorageAccount();
         $scope.accounts = accountMgmt.getStorageAccounts();
         console.log("Inside blob list");
-        $scope.newAccountName = "tulanedigcontent";
-        $scope.newAccountKey = "VGHT4KP9OboKp38oFnFwcK8PpEh5mFRONfxF6MWTnCWzy10j2B/M3AARAdIZnKk+7FSpG4rhqBw315VmfQypqw==";
+        $scope.newAccountName = "PUT ACCOUNT";
+        $scope.newAccountKey = "PUT KEY";
         var sa = accountMgmt.addStorageAccount($scope.newAccountName, $scope.newAccountKey);
         $scope.accounts = accountMgmt.getStorageAccounts();
         accountMgmt.setCurrentStorageAccount("tulanedigcontent");
