@@ -1,0 +1,257 @@
+{{!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.1/css/bootstrap.min.css"> --}}
+
+{{!-- <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script> --}}
+{{!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> --}}
+{{!-- <script
+    src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+<link rel="stylesheet"
+    href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css">
+<script src="/js/createRoom.js"></script> --}}
+<link rel="stylesheet" href="/css/room.css">
+
+
+<link rel="stylesheet" href="/css/bootstrap-tagsinput.css">
+
+{{!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"> --}}
+  <!-- Bootstrap core CSS -->
+  <!-- Material Design Bootstrap -->
+  {{!-- <link href="css/mdb.min.css" rel="stylesheet"> --}}
+{{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> --}}
+<script src="https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+{{!-- <script type="text/javascript" src="js/mdb.min.js"></script> --}}
+{{!-- <script
+    src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+<link rel="stylesheet"
+    href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css"> --}}
+<script src="/js/createRoom.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.standalone.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/jquery-clockpicker.min.css">
+<script src="/js/jquery-clockpicker.min.js"></script>
+
+<div class="jumbotron" style="padding-bottom:15px; margin-top:40px;">
+    <h5>Create a Virtual Classroom</h5>
+    <p>Enter the basic details for the virtual room below</p>
+    
+  </div>
+
+{{#if roomName}}
+<div class="alert alert-danger" style="margin: 53px 0px 0px 0px;">
+  Room name "{{this.roomName}}", already exists
+</div>
+
+  
+
+{{/if}}
+<div class="container" style="margin-top:-40px;">
+    <form autocomplete="off" action="/create/createnewroom" method="POST">
+    <div class="row">
+        {{!-- <div class="panel panel-default" style="padding: 15px"></div> --}}
+        {{!-- <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="panel panel-default" style="padding: 15px">
+                
+                <br>
+               
+                </div>
+                
+                <br>
+                
+            </div>
+        </div> --}}
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+             <div class='input-group input-group-lg'>
+                    <div class="form-group">
+                        {{!-- <div class='input-group'>
+                            <input type='text' class="form-control" placeholder="Room name" name="roomname" autocomplete="off" required="required"/>
+                        </div> --}}
+                        <div class="md-form">
+                            <input autocomplete="off" type="text" id="roomname" class="form-control" name="roomname" required="required">
+                            <label for="roomname">Room Name</label>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class='input-group input-group-lg'>
+                    <div class="form-group">
+                        {{!-- <div class='input-group'>
+                            <input type='text' size="50" class="form-control" placeholder="Room Description" name="description" autocomplete="off" required="required"/>
+                        </div> --}}
+                         <div class="md-form">
+                            <input type="text" size="50" id="description" class="form-control" name="description" required="required">
+                            <label for="description">Description</label>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+
+        <div class="row">
+
+        <div class="col-md-2 col-sm-6 col-xs-12">
+              <div class="form-group">
+                        {{!-- <div class='input-group date' id='datetimepicker2'>
+                            <input type='text' class="form-control" placeholder="Date" name="date" required="required"/>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div> --}}
+                        <div class="input-daterange input-group" id="flight-datepicker">
+                            <div class="form-item">
+                            <span class="fontawesome-calendar" style="top:20px;"></span>
+                            <input class="input-sm form-control" type="text" id="start-date" name="date" placeholder="Date" data-date-format="DD, MM YYYY d"/><span class="date-text date-depart"></span>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+
+        <div class="col-md-2 col-sm-6 col-xs-12">
+              <div class='input-group input-group-lg'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type='text' class="form-control" id="input-b"  placeholder="Start time" name="starttime" required="required"/>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-time"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="col-md-2 col-sm-6 col-xs-12">
+              <div class='input-group input-group-lg'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker4'>
+                            <input type='text' id="input-a" class="form-control" placeholder="End time" name="endtime" required="required"/>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-time"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    
+    </div>
+
+    <div class="row">
+        <div class='input-group input-group-lg'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            
+                                <input type='text' class="form-control" placeholder="Enter Student emails"
+                                data-role="tagsinput" name="studentemail"  autocomplete="off" required="required"/>
+                            
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+      <div class="row">
+        <div class='input-group input-group-lg'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            
+                           
+                            
+                                <input type='text' class="form-control" placeholder="Enter Teacher emails"
+                                data-role="tagsinput" autocomplete="off" name="teacheremail" />
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+    <div class="row">
+        <div class="panel-heading clearfix" style="margin-left:15px;">
+                    <i class="icon-calendar"></i>
+                    <h5 class="panel-title">Select files to upload</h5>
+                    <div style="background: whitesmoke;padding: 20px;border-radius: 5px;">
+                        {{#each uploadList}}
+                        <div class="checkbox checkbox-primary">
+                            <input id="checkbox2" type="checkbox" name="checkbox" value="{{this}}">
+                            <label for="checkbox2">
+                                {{this}}
+                            </label>
+                        </div>
+
+                    {{/each}}
+                        <div class="checkbox checkbox-primary" >
+                            <input type="hidden" name="checkbox" value="" >
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+    <div class="row" style="margin-top:20px; margin-left:0px;">
+        <div class='input-group input-group-lg'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input onclick="change()" type='submit' style="padding-bottom:30px;" value="Create Room" class="form-control btn btn-primary btn-large"/>
+                        </div>
+                           
+
+
+                    </div>
+                </div>
+    </div>
+    </div>
+ 
+    </form>
+</div>
+
+<script>
+function change()
+{
+    document.getElementById("submit-btn-id").value="Creating ..."; 
+}
+</script>
+
+
+
+
+{{!-- <input id="input-a" value="" data-default="20:48"> --}}
+
+<script>
+    // Make your own here: https://eternicode.github.io/bootstrap-datepicker
+
+var dateSelect     = $('#flight-datepicker');
+var dateDepart     = $('#start-date');
+var dateReturn     = $('#end-date');
+var spanDepart     = $('.date-depart');
+var spanReturn     = $('.date-return');
+var spanDateFormat = 'ddd, MMMM D yyyy';
+
+dateSelect.datepicker({
+  autoclose: true,
+  format: "mm-dd-yyyy",
+  maxViewMode: 0,
+  startDate: "now"
+}).on('change', function() {
+  var start = $.format.date(dateDepart.datepicker('getDate'), spanDateFormat);
+  var end = $.format.date(dateReturn.datepicker('getDate'), spanDateFormat);
+  spanDepart.text(start);
+  spanReturn.text(end);
+});
+
+
+var inputA = $('#input-a');
+inputA.clockpicker({
+    autoclose: true
+});
+
+var inputB = $('#input-b');
+inputB.clockpicker({
+    autoclose: true
+});
+</script>

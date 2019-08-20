@@ -1,0 +1,19 @@
+{
+    "roomSettings": [
+        {
+            "roomName": "VR Room",
+            "description": "description goes here man",
+            "roomSize": 5,
+            "date": "",
+            "startTime": "4:56",
+            "endTime": "6:56",
+            "participantKey": 217795474,
+            "hostKey": 6871512,
+            "hosts": 2,
+            "participants": 1,
+            "fileName": [
+                "asset.pdf"
+            ]
+        }
+    ]
+}

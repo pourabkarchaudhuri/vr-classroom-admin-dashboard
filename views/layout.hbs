@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tulane VR</title>
+
+    {{!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> --}}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+      integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+    {{!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"> --}}
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+
+    <link rel='stylesheet' href='/css/style.css' />
+    {{!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+       {{!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+      integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> --}}
+    {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> --}}
+ 
+
+     
+      {{!-- date/time picker --}}
+      {{!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+      <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+      <link rel="stylesheet" href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css">
+      <script src="/js/createRoom.js"></script> --}}
+      {{!-- /date/time picker --}}
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container">
+        <a href="/" class="navbar-brand">Tulane VR</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+          aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+          
+            {{#if user}}
+              <li class="nav-item">
+              <a href="/" class="nav-link{{#if active.home}} active{{/if}}">Home</a>
+            </li>
+              <li class="nav-item" data-turbolinks="false">
+                <a href="/calendar" class="nav-link{{#if active.calendar}} active{{/if}}">Calendar</a>
+              </li>
+              <li class="nav-item" data-turbolinks="false">
+                <a href="/blob" class="nav-link{{#if active.blob}} active{{/if}}">Files</a>
+              </li>
+              
+              
+            {{/if}}
+          </ul>
+          <ul class="navbar-nav justify-content-end">
+            {{!-- <li class="nav-item">
+              <a class="nav-link" href="https://developer.microsoft.com/graph/docs/concepts/overview" target="_blank">
+                <i class="fas fa-external-link-alt mr-1"></i>Docs
+              </a>
+            </li> --}}
+            {{#if user}}
+            <li class="nav-item" data-turbolinks="false">
+                <a href="/create" class="btn btn-primary btn-large">Create Room</a>
+              </li>
+              <li class="nav-item dropdown" style="margin-top:10px;">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                  aria-expanded="false">
+                  {{#if user.avatar}}
+                    <img src="{{ user.avatar }}" class="rounded-circle align-self-center mr-2" style="width: 32px;">
+                  {{else}}
+                    <i class="far fa-user-circle fa-lg rounded-circle align-self-center mr-2" style="width: 32px;"></i>
+                  {{/if}}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <h5 class="dropdown-item-text mb-0">{{ user.displayName }}</h5>
+                  <p class="dropdown-item-text text-muted mb-0">{{ user.email }}</p>
+                  <div class="dropdown-divider"></div>
+                  <a href="/auth/signout" class="dropdown-item">Sign Out</a>
+                </div>
+              </li>
+              {{!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                aria-labelledby="navbarDropdownMenuLink-333">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li> --}}
+            {{else}}
+              <li class="nav-item">
+                <a href="/auth/signin" class="btn btn-primary btn-large">Sign In</a>
+              </li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main role="main" class="container">
+      {{#each error}}
+        <div class="alert alert-danger" role="alert">
+          <p class="mb-3">{{ this.message }}</p>
+          {{#if this.debug }}
+            <pre class="alert-pre border bg-light p-2"><code>{{ this.debug }}</code></pre>
+          {{/if}}
+        </div>
+      {{/each}}
+
+      {{{body}}}
+    </main>
+    {{!-- <script>
+      function navToggle() {
+        alert("Toggle Triggered")
+            if ($('#toggle-button').is(':visible')) {
+              alert("Is visible!")
+                $('#navbar-collapse').collapse('toggle');
+            }
+        }
+    </script> --}}
+
+    {{!-- <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script> --}}
+      <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+
+
+        {{!-- <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script> --}}
+
+  
+  {{!-- <script>
+    $('.datepicker').pickadate();
+  </script> --}}
+  </body>
+</html>

@@ -1,0 +1,549 @@
+/* @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+@import url("https://fonts.googleapis.com/css?family=Pacifico");
+.input-group-addon {
+  cursor: pointer;
+}
+
+.form-control {
+  border: 1px solid #ccc;
+  box-shadow: none;
+}
+.form-control:hover, .form-control:focus, .form-control:active {
+  box-shadow: none;
+}
+.form-control:focus {
+  border: 1px solid #34495e;
+}
+
+body {
+  background: #e0e0e0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  line-height: 21px;
+  padding: 15px 0;
+}
+
+h1 {
+  color: #333;
+  font-family: 'Pacifico', cursive;
+  font-size: 28px;
+  line-height: 42px;
+  margin: 0 0 15px;
+  text-align: center;
+}
+
+.content {
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075), 0 2px 4px rgba(0, 0, 0, 0.0375);
+  padding: 30px 30px 20px;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu {
+  border: 1px solid #34495e;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 10px 0 0 0;
+  padding: 0;
+  min-width: 300px;
+  max-width: 100%;
+  width: auto;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu.bottom:before, .bootstrap-datetimepicker-widget.dropdown-menu.bottom:after {
+  display: none;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu table td,
+.bootstrap-datetimepicker-widget.dropdown-menu table th {
+  border-radius: 0;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu table td.old, .bootstrap-datetimepicker-widget.dropdown-menu table td.new {
+  color: #bbb;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu table td.today:before {
+  border-bottom-color: #0095ff;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu table td.active,
+.bootstrap-datetimepicker-widget.dropdown-menu table td.active:hover,
+.bootstrap-datetimepicker-widget.dropdown-menu table td span.active {
+  background-color: #0095ff;
+  text-shadow: none;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu table td.active.today:before,
+.bootstrap-datetimepicker-widget.dropdown-menu table td.active:hover.today:before,
+.bootstrap-datetimepicker-widget.dropdown-menu table td span.active.today:before {
+  border-bottom-color: #fff;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu table th {
+  height: 40px;
+  padding: 0;
+  width: 40px;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu table th.picker-switch {
+  width: auto;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu table tr:first-of-type th {
+  border-bottom: 1px solid #34495e;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu table td.day {
+  height: 32px;
+  line-height: 32px;
+  padding: 0;
+  width: auto;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu table td span {
+  border-radius: 0;
+  height: 77px;
+  line-height: 77px;
+  margin: 0;
+  width: 25%;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu .datepicker-months tbody tr td,
+.bootstrap-datetimepicker-widget.dropdown-menu .datepicker-years tbody tr td,
+.bootstrap-datetimepicker-widget.dropdown-menu .datepicker-decades tbody tr td {
+  padding: 0;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu .datepicker-decades tbody tr td {
+  height: 27px;
+  line-height: 27px;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu .datepicker-decades tbody tr td span {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 46px;
+  line-height: 46px !important;
+  padding: 0;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu .datepicker-decades tbody tr td span:not(.decade) {
+  display: none;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td {
+  padding: 0;
+  width: 30%;
+  height: 20px;
+  line-height: 20px;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td:nth-child(2) {
+  width: 10%;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td a,
+.bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td span,
+.bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td button {
+  border: none;
+  border-radius: 0;
+  height: 56px;
+  line-height: 56px;
+  padding: 0;
+  width: 100%;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td span {
+  color: #333;
+  margin-top: -1px;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td button {
+  background-color: #fff;
+  color: #333;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td button:hover {
+  background-color: #eee;
+}
+
+
+/* .multiple_emails-container { 
+	border:1px #ccc solid; 
+	border-radius: 4px; 
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075); 
+	padding:0; margin: 0; cursor:text; width:100%; 
+} */
+
+/* .multiple_emails-container input { 
+	clear:both; 
+	width:100%; 
+	border:0; 
+	outline: none; 
+	margin-bottom:3px; 
+	padding-left: 5px; 
+} */
+
+/* .multiple_emails-container input.multiple_emails-error {	
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px red;
+	outline: thin auto red; 
+} */
+
+/* .multiple_emails-container ul {
+	list-style-type:none; 
+	padding-left: 0; 
+} */
+
+/* .multiple_emails-email { 
+	margin: 3px 5px 3px 5px; 
+	padding: 3px 5px 3px 5px; 
+	border:1px #BBD8FB solid;	
+	border-radius: 3px; 
+	background: #F3F7FD; 
+}
+
+.multiple_emails-close { 
+	float:left; 
+	margin:0 3px;
+} */
+
+/* .checkbox {
+  padding-left: 20px;
+}
+
+.checkbox label {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  padding-left: 5px;
+} */
+
+/* .checkbox label::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  left: 0;
+  margin-left: -20px;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  background-color: #fff;
+  -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+  -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+  transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+.checkbox label::after {
+  display: inline-block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 0;
+  top: 0;
+  margin-left: -20px;
+  padding-left: 3px;
+  padding-top: 0px;
+  font-size: 11px;
+  color: #555555;
+} */
+
+/* .checkbox input[type="checkbox"] {
+  opacity: 0;
+  z-index: 1;
+}
+
+.checkbox input[type="checkbox"]:focus + label::before {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.checkbox input[type="checkbox"]:checked + label::after {
+  font-family: 'FontAwesome';
+  content: "\f00c";
+} */
+
+/* .checkbox input[type="checkbox"]:disabled + label {
+  opacity: 0.65;
+}
+
+.checkbox input[type="checkbox"]:disabled + label::before {
+  background-color: #eeeeee;
+  cursor: not-allowed;
+}
+
+.checkbox.checkbox-circle label::before {
+  border-radius: 50%;
+}
+
+.checkbox.checkbox-inline {
+  margin-top: 0;
+}
+
+.checkbox-primary input[type="checkbox"]:checked + label::before {
+  background-color: #428bca;
+  border-color: #428bca;
+}
+
+.checkbox-primary input[type="checkbox"]:checked + label::after {
+  color: #fff;
+}
+
+/* BUTTON 5 */
+/* .btn-5 {
+  overflow: hidden;
+} */ 
+
+/* .btn-5::after { */
+  /*background-color: #f00;*/
+  /* height: 100%;
+  left: -35%;
+  top: 0;
+  transform: skew(50deg);
+  transition-duration: 0.6s;
+  transform-origin: top left;
+  width: 0; */
+/* } */
+
+/* .btn-5:hover:after {
+  height: 100%;
+  width: 135%; */
+/* }  */
+
+
+
+
+
+/* #flight-datepicker {
+  margin-top: 36px;
+} */
+/* @media screen and (min-width: 400px) {
+  #flight-datepicker {
+    display: flex;
+  }
+} */
+/* #flight-datepicker .form-item {
+  position: relative;
+  margin: 12px 0 60px;
+} */
+/* @media screen and (min-width: 400px) {
+  #flight-datepicker .form-item {
+    margin: 12px 24px 0 0;
+  }
+} */
+/* #flight-datepicker label {
+  display: block;
+  margin-bottom: 8px;
+  color: white;
+} */
+/* #flight-datepicker input {
+  display: block;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  width: 100%;
+  font-family: "Lato", sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: left;
+  color: #0e3e43;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #ffffff;
+  border-radius: 0;
+  outline: none;
+  transition: border-color .2s ease-out;
+} */
+/* #flight-datepicker input:first-child, #flight-datepicker input:last-child {
+  border-radius: 0;
+} */
+/* #flight-datepicker input::-webkit-input-placeholder {
+  color: #0e3e43;
+  font-size: 14px;
+  line-height: 30px;
+  transition: color .2s .2s ease-out;
+} */
+/* #flight-datepicker input:-moz-placeholder {
+  color: #0e3e43;
+  font-size: 14px;
+  line-height: 30px;
+  transition: color .2s .2s ease-out;
+} */
+/* #flight-datepicker input::-moz-placeholder {
+  color: #0e3e43;
+  font-size: 14px;
+  line-height: 30px;
+  transition: color .2s .2s ease-out;
+} */
+/* #flight-datepicker input:-ms-input-placeholder {
+  color: #0e3e43;
+  font-size: 14px;
+  line-height: 30px;
+  transition: color .2s .2s ease-out;
+} */
+/* #flight-datepicker input:focus {
+  border-bottom-color: #125259;
+}
+#flight-datepicker input:focus::-webkit-input-placeholder {
+  color: transparent;
+  transition: color .2s ease-out;
+}
+#flight-datepicker input:focus:-moz-placeholder {
+  color: transparent;
+  transition: color .2s ease-out;
+}
+#flight-datepicker input:focus::-moz-placeholder {
+  color: transparent;
+  transition: color .2s ease-out;
+}
+#flight-datepicker input:focus:-ms-input-placeholder {
+  color: transparent;
+  transition: color .2s ease-out;
+} */
+#flight-datepicker .date-text {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  top: calc(100% + 6px);
+  font-size: 12px;
+  color: white;
+}
+@media screen and (min-width: 400px) {
+  #flight-datepicker .date-text {
+    top: 100%;
+  }
+}
+
+.datepicker.dropdown-menu {
+  padding: 0;
+  background-clip: border-box;
+  border: none;
+  border-radius: 0;
+  -webkit-animation: popup .2s ease-out forwards;
+          animation: popup .2s ease-out forwards;
+}
+.datepicker.dropdown-menu table {
+  background-color: #1b7983;
+}
+.datepicker.dropdown-menu table thead {
+  background-color: #1b7983;
+}
+.datepicker.dropdown-menu table thead tr {
+  border-top: 0;
+}
+.datepicker.dropdown-menu table tbody {
+  background-color: white;
+}
+.datepicker.dropdown-menu table tr {
+  border-top: 1px solid #ededed;
+}
+.datepicker.dropdown-menu table tr td, .datepicker.dropdown-menu table tr th {
+  width: auto;
+  height: 24px;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 0;
+  transition: background-color .6s ease-out;
+}
+@media screen and (min-width: 400px) {
+  .datepicker.dropdown-menu table tr td, .datepicker.dropdown-menu table tr th {
+    padding: 12px;
+  }
+}
+.datepicker.dropdown-menu table tr td:hover, .datepicker.dropdown-menu table tr td.active:hover, .datepicker.dropdown-menu table tr td:active:hover, .datepicker.dropdown-menu table tr th:hover, .datepicker.dropdown-menu table tr th.active:hover, .datepicker.dropdown-menu table tr th:active:hover {
+  border-color: #ededed;
+  border-radius: 0;
+  transition: background-color .2s ease-out;
+}
+.datepicker.dropdown-menu table tr td.focused, .datepicker.dropdown-menu table tr td.selected, .datepicker.dropdown-menu table tr th.focused, .datepicker.dropdown-menu table tr th.selected {
+  background-color: #24A0AD;
+  border-color: #ededed;
+  border-radius: 0;
+}
+.datepicker.dropdown-menu table tr td.active, .datepicker.dropdown-menu table tr td.active:focus, .datepicker.dropdown-menu table tr td.active.active:hover, .datepicker.dropdown-menu table tr td:active:focus, .datepicker.dropdown-menu table tr td.highlighted, .datepicker.dropdown-menu table tr th.active, .datepicker.dropdown-menu table tr th.active:focus, .datepicker.dropdown-menu table tr th.active.active:hover, .datepicker.dropdown-menu table tr th:active:focus, .datepicker.dropdown-menu table tr th.highlighted {
+  background-color: #1b7983;
+  border-color: #ededed;
+}
+.datepicker.dropdown-menu table tr th.datepicker-switch {
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 2;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #ffffff;
+  background-color: inherit;
+  border-radius: 0;
+}
+.datepicker.dropdown-menu table tr th.prev,
+.datepicker.dropdown-menu table tr th.next {
+  color: #ffffff;
+  background-color: #17656e;
+  border-radius: 0;
+}
+.datepicker.dropdown-menu table tr th.dow {
+  padding: 2px 12px;
+  font-size: 12px;
+  line-height: 2;
+  color: #ffffff;
+  background-color: #19717a;
+  border-top: 1px solid #196d76;
+  border-radius: 0;
+}
+.datepicker.dropdown-menu table tr td.day {
+  width: 24px;
+  border-right: 1px solid #ededed;
+}
+.datepicker.dropdown-menu table tr td.day:last-child {
+  border-right-width: 0;
+}
+.datepicker.dropdown-menu table tr td.range {
+  background-color: #eeeeee;
+}
+.datepicker.dropdown-menu .new,
+.datepicker.dropdown-menu .old,
+.datepicker.dropdown-menu .disabled,
+.datepicker.dropdown-menu .disabled:hover {
+  color: #ccc;
+}
+
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+.fontawesome-calendar {
+  position: absolute;
+  top: 26px;
+  right: 0;
+  font-size: 24px;
+  z-index: -99;
+}
+
+@-webkit-keyframes popup {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(12px);
+            transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes popup {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(12px);
+            transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+
+
+
+/* Bootstrap css */
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+
+/* Google Material icons */
+@import "http://fonts.googleapis.com/icon?family=Material+Icons";
+
+/* Propeller css */
+@import "dist/css/propeller.min.css";
+
+/* Bootstrap datetimepicker */
+@import "datetimepicker/css/bootstrap-datetimepicker.css";
+
+/* Propeller datetimepicker */
+@import "datetimepicker/css/pmd-datetimepicker.css";

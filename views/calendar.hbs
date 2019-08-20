@@ -1,0 +1,33 @@
+<div style="margin-top:100px;">
+<h1>Calendar</h1>
+<table class="table borderless" style="text-transform: capitalize;">
+  <thead>
+    <tr>
+      <th class="table-title-text-style" scope="col">Organizer</th>
+      <th class="table-title-text-style" scope="col">Subject</th>
+      <th class="table-title-text-style" scope="col">Start</th>
+      <th class="table-title-text-style" scope="col">End</th>
+    </tr>
+  </thead>
+  <tbody class="list-text-color">
+    {{#each events}}
+      <tr>
+        <td>{{this.organizer.emailAddress.name}}</td>
+        <td style="font-weight: 500;">{{this.subject}}</td>
+        <td>
+          <div class="calendar-time-style">
+            {{eventDateTime this.start.dateTime}}
+          </div>
+          
+        </td>
+        <td>
+           <div class="calendar-time-style">
+            {{eventDateTime this.end.dateTime}}
+          </div>
+          
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+</div>

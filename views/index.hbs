@@ -1,0 +1,83 @@
+<body {{#unless user}}style="background-image: url('image/home.jpg');background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;";{{/unless}}>
+  
+  
+  {{#if user}}
+  <div class="jumbotron" style="padding-bottom:15px; margin-top:40px;">
+    <h5>Welcome {{ user.displayName }}!</h5>
+    <p>Use the navigation bar at the top of the page to get started.</p>
+    <div class="container" style="position: relative; left: -15px;">
+      <a href="/create" class="btn btn-large btn-primary">Create room</a>
+    </div>
+  </div>
+  {{else}}
+  <div class="jumbotron login-content">
+    <h1>Tulane VR</h1>
+    <p class="lead">Imagine a world as it could be</p>
+    <a href="/auth/signin" class="btn btn-primary btn-large">Sign in</a>
+    </div>
+  {{/if}}
+
+{{#if user}}
+{{!-- <div class="">
+  <div class="force-overflow"></div>
+</div> --}}
+<div class="d-flex justify-content-center">
+  <div class="table-wrapper-scroll-y my-custom-scrollbar scrollbar scrollbar-primary">
+  <table class="table borderless" style="text-transform: capitalize;">
+    <thead>
+      <tr>
+        <th class="table-title-text-style" scope="col">Room</th>
+        <th class="table-title-text-style" scope="col">Description</th>
+        <th class="table-title-text-style" scope="col">Owner</th>
+        <th class="table-title-text-style" scope="col">Invitees</th>
+        <th class="table-title-text-style" scope="col">Date</th>
+        <th class="table-title-text-style" scope="col">Time</th>
+      </tr>
+    </thead>
+    <tbody class="list-text-color">
+      {{#each user.roomList}}
+        <tr>
+          <td>
+            <div class="room-name-style component-padding">
+              {{this.roomName}}
+            </div>   
+          </td>
+          <td>
+            <div class="component-padding" style="max-width: 300px;">
+              {{this.description}}
+            </div> 
+          </td>
+          <td>
+            <div class="component-padding">
+              {{this.ownerName}}
+            </div> 
+          </td>
+          <td>
+            <div class="room-invitee-style component-padding">
+              {{this.participants}}
+            </div>  
+          </td>
+          <td>
+            <div class="component-padding">
+              {{this.date}}
+            </div> 
+          </td>
+          <td>
+            <div class="component-padding">
+              {{this.startTime}} - {{this.endTime}}
+            </div> 
+            
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+</div>
+
+{{/if}}
+
+</body>

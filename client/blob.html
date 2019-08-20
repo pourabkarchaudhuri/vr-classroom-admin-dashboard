@@ -1,0 +1,223 @@
+<head>
+  <title>Tulane VR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="css/site.css" /> -->
+
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+    integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"> -->
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="css/mdb.min.css" rel="stylesheet">
+
+  <!-- <link rel='stylesheet' href='/css/style.css' /> -->
+
+  <script src="/js/jquery-3.4.1.min.js"></script>
+
+    <!-- <script src="//code.jquery.com/jquery-2.1.4.min.js"></script> -->
+    <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-cookies.js"></script>
+
+    <script src="js/index.js"></script>
+    <script src="js/fileupload.js"></script>
+    <script src="js/accounts.js"></script>
+    <!-- <script src="js/table.js"></script> -->
+    <script src="js/blob.js"></script>
+</head>
+<body ng-app="mainApp" ng-controller="BlobController">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container">
+      <a href="/" class="navbar-brand">Tulane VR</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+        
+        
+            <li class="nav-item">
+            <a href="/" class="nav-link">Home</a>
+          </li>
+            <li class="nav-item" data-turbolinks="false">
+              <a href="/calendar" class="nav-link">Calendar</a>
+            </li>
+            <li class="nav-item" data-turbolinks="false">
+              <a href="/blob" class="nav-link">Files</a>
+            </li>
+            
+            
+      
+        </ul>
+        <ul class="navbar-nav justify-content-end">
+       
+       
+          <li class="nav-item" data-turbolinks="false">
+              <a href="/create" class="btn btn-primary btn-large">Create Room</a>
+            </li>
+            <li class="nav-item dropdown" style="margin-top: 10px;">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                aria-expanded="false">
+               
+                 
+            
+                  <i class="far fa-user-circle fa-lg rounded-circle align-self-center mr-2" style="width: 32px;"></i>
+               
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <h5 class="dropdown-item-text mb-0">{{ user.displayName }}</h5>
+                <p class="dropdown-item-text text-muted mb-0">{{ user.email }}</p>
+                <div class="dropdown-divider"></div>
+                <a href="/auth/signout" class="dropdown-item">Sign Out</a>
+              </div>
+            </li>
+            
+        
+        </ul>
+      </div>
+    </div>
+  </nav>
+<div class="container">
+<div class="alert alert-danger" ng-hide="currentAccount && currentAccount.name">
+  There is no active account, Please go to <a href="#/">Accounts</a> Page to Add Account or Set Active Account
+</div>
+
+<div ng-show="currentAccount && currentAccount.name" style="margin-top: 90px;">
+  <div class="alert alert-info">Current Storage Account is <strong>{{currentAccount.name}}</strong></div>
+  
+  <div>
+      <ol class="breadcrumb">
+        <li><a href="javascript:void(0)" ng-click="openFolder('/')">/&nbsp;{{currentAccount.name}}&nbsp;</a></li>
+        <li ng-repeat="path in pathList">
+            <a href="javascript:void(0)" ng-click="openFolder(path.path)">/&nbsp;{{path.name}}&nbsp;</a>
+        </li>
+      </ol>
+  </div>
+
+  <div class="loading" style="min-height:100px" ng-show="itemsLoading"></div>
+  <div ng-hide="itemsLoading">
+      <div>
+          <div class="row">
+              <div class="col-sm-6">
+                  <button class="btn btn-primary" data-toggle="modal" data-target="#modalNewFolder">
+                      New Folder
+                  </button>
+                  <button class="btn btn-primary" onclick="$(this).next().click()" ng-disabled="path == '/'">Upload Files</button>
+                  <input type="file" multiple style="display:none" file-selected="fileSelected(files)"/>
+                  <button class="btn btn-danger" ng-disabled="!hasAnyItemChecked()" ng-click="deleteBlobs()">Delete Blobs</button>
+              </div>
+              
+          </div>
+          <hr />
+          <table class="table borderless">
+              <thead>
+                  <tr>
+                      <th style="width:15px;"><input type="checkbox" ng-model="checkAllItems" ng-click="clickCheckAllItems()"/></th>
+                      <th style="width:25px;"></th>
+                      <th>Name</th>
+                      <th class="hidden-xs">Date modified</th>
+                      <th class="hidden-xs">Size</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr ng-repeat="upload in uploadingList" ng-show="upload.path == path">
+                      <td></td>
+                      <td><img style="max-height:25px; max-width:25px" src="{{getIcon(upload)}}" /></td>
+                      <td>
+                          {{upload.shortName}}
+                          
+                          <label class="label label-default" ng-show="upload.status == 'pending'">
+                              pending upload
+                          </label>
+                          
+                          <span ng-show="upload.status == 'failed'">
+                               <label class="label label-danger">
+                                  failed upload
+                              </label>
+                              &nbsp;
+                              <a href="javascript:void(0)" ng-click="retryUpload(upload)">Retry</a>
+                              &nbsp;
+                              <a  href="javascript:void(0)" ng-click="cancelUpload(upload)">Cancel</a>
+                          </span>
+                          
+                          <div class="progress" ng-show="upload.status =='inProgress'">
+                              <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{upload.uploadPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width:{{upload.uploadPercentage}}%">
+                                  {{upload.uploadPercentage}}%
+                              </div>
+                          </div>
+                      </td>
+                      <td class="hidden-xs">{{upload.properties['last-modified']}}</td>
+                      <td class="hidden-xs">{{getSize(upload)}}</td>
+                  </tr>
+                  <tr ng-repeat="item in items">
+                      <td style="vertical-align: middle;"><input type="checkbox" ng-model="item.$selected" /></td>
+                      <td><img style="max-height:35px; max-width:35px" src="{{getIcon(item)}}" /></td>
+                      <td ng-click="openItem(item)"><a href="javascript:void(0)">{{item.shortName}}</a></td>
+                      <td  class="hidden-xs">{{item.properties['last-modified']}}</td>
+                      <td  class="hidden-xs">{{getSize(item)}}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      <div class="alert alert-info" ng-hide="items && items.length > 0">No items in Current Folder</div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalNewFolder">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" style="position: relative;left: 240px;" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title" style="position: relative;left: -220px;">Input New Folder Name</h4>
+    </div>
+    <div class="modal-body">
+      <input type="text" class="form-control" ng-model="newFolderName" />
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="newFolder()">Confirm</button>
+    </div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="divDeletingDlg" class="modal fade" data-backdrop="static">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Delete Blobs</h4>
+    </div>
+    <div class="modal-body" style="word-break:break-all">
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{deletePercentage}}" aria-valuemin="0" aria-valuemax="100" style="min-width:4em; width: {{deletePercentage}}%">
+          {{deletePercentage}}%
+        </div>
+      </div>
+      {{deleteAction}} : {{deleteActionPath}}
+
+      <div class="alert alert-danger" ng-show="deleteError">{{deleteError}}</div>
+          
+    </div>
+    <div class="modal-footer" ng-show="deleteError">
+      <button type="button" class="btn btn-primary" ng-click="continueDeleting()">Ignore</button>
+      <button type="button" class="btn btn-primary" ng-click="deletingCurrentItem()">Retry</button>
+      <button type="button" class="btn btn-default" ng-click="cancelDeleting()">Cancel</button>
+    </div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div>
+</div><!-- /.modal -->
+</body>
+
+ <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
