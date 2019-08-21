@@ -317,7 +317,7 @@ function uploadJSON(req, data) {
     })
 }
 
-async function sendCalendarInvite(req, name, utcStart, utcEnd, studentemail, teacheremail, studentKey, teachersKey) {
+async function sendCalendarInvite(req, name, utcStart, utcEnd, studentemail, teacheremail, teachersKey, studentKey) {
 
     var studentEmails = [];
     var teachersEmails = [];
